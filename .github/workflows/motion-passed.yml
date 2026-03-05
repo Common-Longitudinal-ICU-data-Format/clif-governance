@@ -2,7 +2,7 @@ name: Create GitHub Issue for Passed Motion
 
 on:
   push:
-    branches: [main]
+    branches: [master]
     paths:
       - '_data/motions.yml'
       - '_meetings/*.md'
