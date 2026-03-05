@@ -1,0 +1,49 @@
+# CLIF Steering Committee
+# Quorum requires >50% of voting members present
+
+voting_members:
+  - name: "Will Parker"
+    role: "Executive Director"
+    institution: "UChicago"
+    email: "wparker@uchicago.edu"
+    
+  - name: "Nick Ingraham"
+    role: "Co-Chair"
+    institution: "UMN"
+    
+  - name: "Catherine Gao"
+    role: "Co-Chair"
+    institution: "Northwestern"
+    
+  - name: "Kaveri Chhikara"
+    role: "VP Software Development"
+    institution: "UChicago"
+    
+  - name: "Vaishvik Chaudhari"
+    role: "VP Technical / Technical Lead"
+    institution: "Rush"
+    
+  - name: "Chad Hochberg"
+    role: "VP New Member Integration"
+    institution: "Hopkins"
+    
+  - name: "Pat Lyons"
+    role: "Founding Vice-Chair"
+    institution: "OHSU"
+    
+  - name: "J.C. Rojas"
+    role: "Founding Vice-Chair"
+    institution: "Rush"
+
+# Quorum settings
+quorum:
+  type: "majority"  # Options: majority, two-thirds, fixed
+  threshold: 0.5    # >50% for majority
+  
+# Voting thresholds by motion type
+voting_thresholds:
+  standard: 0.5           # Simple majority
+  schema_change: 0.67     # 2/3 for breaking changes
+  mcide_update: 0.5       # Simple majority
+  new_table: 0.67         # 2/3 for new tables
+  policy: 0.5             # Simple majority

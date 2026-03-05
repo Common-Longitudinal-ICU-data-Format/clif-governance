@@ -1,0 +1,108 @@
+---
+layout: default
+---
+
+<article class="meeting">
+  <header class="meeting-header">
+    <h1>{{ page.title }}</h1>
+    <p class="meeting-date">📅 {{ page.date | date: "%B %d, %Y" }}</p>
+  </header>
+
+  {% if page.attendance %}
+  <section class="quorum-section">
+    <h2>📋 Attendance & Quorum</h2>
+    {% assign total_members = site.data.committee.voting_members | size %}
+    {% assign present_count = page.attendance.present | size %}
+    {% assign quorum_needed = total_members | divided_by: 2 | plus: 1 %}
+    {% assign has_quorum = false %}
+    {% if present_count >= quorum_needed %}
+      {% assign has_quorum = true %}
+    {% endif %}
+    
+    <div class="quorum-status {% if has_quorum %}quorum-met{% else %}quorum-not-met{% endif %}">
+      {% if has_quorum %}
+        ✅ Quorum Met ({{ present_count }}/{{ total_members }} present, {{ quorum_needed }} needed)
+      {% else %}
+        ❌ No Quorum ({{ present_count }}/{{ total_members }} present, {{ quorum_needed }} needed)
+      {% endif %}
+    </div>
+    
+    <div class="attendance-grid">
+      <div class="attendance-present">
+        <h4>Present ({{ present_count }})</h4>
+        <ul>
+          {% for member in page.attendance.present %}
+          <li>✅ {{ member }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% if page.attendance.absent %}
+      <div class="attendance-absent">
+        <h4>Absent</h4>
+        <ul>
+          {% for member in page.attendance.absent %}
+          <li>➖ {{ member }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+    </div>
+  </section>
+  {% endif %}
+
+  {% if page.agenda %}
+  <section class="agenda-section">
+    <h2>📝 Agenda</h2>
+    <ol class="agenda-list">
+      {% for item in page.agenda %}
+      <li>
+        <strong>{{ item.title }}</strong>
+        {% if item.presenter %}<span class="presenter">— {{ item.presenter }}</span>{% endif %}
+        {% if item.duration %}<span class="duration">({{ item.duration }})</span>{% endif %}
+        {% if item.notes %}<p class="agenda-notes">{{ item.notes }}</p>{% endif %}
+      </li>
+      {% endfor %}
+    </ol>
+  </section>
+  {% endif %}
+
+  {% if page.motions %}
+  <section class="motions-section">
+    <h2>🗳️ Motions</h2>
+    {% for motion in page.motions %}
+    <div class="motion-card motion-{{ motion.status }}">
+      <div class="motion-header">
+        <span class="motion-id">#{{ motion.id }}</span>
+        <span class="motion-type">{{ motion.type | replace: "_", " " | capitalize }}</span>
+        <span class="motion-status status-{{ motion.status }}">{{ motion.status | capitalize }}</span>
+      </div>
+      <h3>{{ motion.title }}</h3>
+      <p class="motion-meta">
+        Proposed by <strong>{{ motion.proposed_by }}</strong>
+        {% if motion.seconded_by %} | Seconded by <strong>{{ motion.seconded_by }}</strong>{% endif %}
+      </p>
+      {% if motion.description %}
+      <p class="motion-description">{{ motion.description }}</p>
+      {% endif %}
+      {% if motion.votes %}
+      <div class="vote-results">
+        <span class="votes-yes">👍 {{ motion.votes.yes | size }} Yes</span>
+        <span class="votes-no">👎 {{ motion.votes.no | size }} No</span>
+        <span class="votes-abstain">➖ {{ motion.votes.abstain | size }} Abstain</span>
+      </div>
+      {% endif %}
+      {% if motion.github_issue %}
+      <a href="{{ motion.github_issue }}" class="github-link" target="_blank">View GitHub Issue →</a>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </section>
+  {% endif %}
+
+  <section class="minutes-section">
+    <h2>📄 Minutes</h2>
+    <div class="minutes-content">
+      {{ content }}
+    </div>
+  </section>
+</article>

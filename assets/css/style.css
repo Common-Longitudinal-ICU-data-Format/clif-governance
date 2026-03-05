@@ -1,0 +1,534 @@
+/* CLIF Governance - Parliamentary Tracker Styles */
+
+:root {
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --success: #16a34a;
+  --warning: #ca8a04;
+  --danger: #dc2626;
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-500: #6b7280;
+  --gray-700: #374151;
+  --gray-900: #111827;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.6;
+  color: var(--gray-900);
+  background: var(--gray-50);
+}
+
+/* Navigation */
+.navbar {
+  background: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--gray-200);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-brand a {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
+  color: var(--gray-500);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: var(--primary);
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Dashboard */
+.dashboard-header {
+  margin-bottom: 2rem;
+}
+
+.dashboard-header h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.dashboard-header p {
+  color: var(--gray-500);
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid var(--gray-200);
+}
+
+.stat-card h3 {
+  font-size: 0.875rem;
+  color: var(--gray-500);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.stat-card .value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.stat-card .subtext {
+  font-size: 0.875rem;
+  color: var(--gray-500);
+}
+
+/* Cards */
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid var(--gray-200);
+  margin-bottom: 1rem;
+}
+
+.card h2 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--gray-100);
+}
+
+/* Meeting styles */
+.meeting-header {
+  margin-bottom: 2rem;
+}
+
+.meeting-header h1 {
+  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.meeting-date {
+  color: var(--gray-500);
+  font-size: 1rem;
+}
+
+/* Quorum */
+.quorum-section {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid var(--gray-200);
+  margin-bottom: 1.5rem;
+}
+
+.quorum-status {
+  padding: 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.quorum-met {
+  background: #dcfce7;
+  color: var(--success);
+}
+
+.quorum-not-met {
+  background: #fef2f2;
+  color: var(--danger);
+}
+
+.attendance-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.attendance-present ul,
+.attendance-absent ul {
+  list-style: none;
+}
+
+.attendance-present li,
+.attendance-absent li {
+  padding: 0.25rem 0;
+}
+
+/* Agenda */
+.agenda-section {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid var(--gray-200);
+  margin-bottom: 1.5rem;
+}
+
+.agenda-list {
+  margin-left: 1.25rem;
+}
+
+.agenda-list li {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.agenda-list li:last-child {
+  border-bottom: none;
+}
+
+.presenter {
+  color: var(--gray-500);
+  font-size: 0.875rem;
+}
+
+.duration {
+  background: var(--gray-100);
+  padding: 0.125rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  margin-left: 0.5rem;
+}
+
+.agenda-notes {
+  color: var(--gray-500);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+/* Motions */
+.motions-section {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid var(--gray-200);
+  margin-bottom: 1.5rem;
+}
+
+.motion-card {
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.motion-card:last-child {
+  margin-bottom: 0;
+}
+
+.motion-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.motion-id {
+  font-family: monospace;
+  background: var(--gray-100);
+  padding: 0.125rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+}
+
+.motion-type {
+  font-size: 0.75rem;
+  color: var(--gray-500);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.motion-status {
+  margin-left: auto;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.status-passed {
+  background: #dcfce7;
+  color: var(--success);
+}
+
+.status-failed {
+  background: #fef2f2;
+  color: var(--danger);
+}
+
+.status-discussion, .status-voting {
+  background: #fef3c7;
+  color: var(--warning);
+}
+
+.status-proposed, .status-seconded {
+  background: #dbeafe;
+  color: var(--primary);
+}
+
+.status-tabled {
+  background: var(--gray-100);
+  color: var(--gray-500);
+}
+
+.motion-card h3 {
+  font-size: 1.125rem;
+  margin-bottom: 0.5rem;
+}
+
+.motion-meta {
+  font-size: 0.875rem;
+  color: var(--gray-500);
+  margin-bottom: 0.5rem;
+}
+
+.motion-description {
+  color: var(--gray-700);
+  font-size: 0.9375rem;
+  margin-bottom: 0.75rem;
+}
+
+.vote-results {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.875rem;
+  padding: 0.5rem 0;
+}
+
+.votes-yes { color: var(--success); }
+.votes-no { color: var(--danger); }
+.votes-abstain { color: var(--gray-500); }
+
+.github-link {
+  display: inline-block;
+  color: var(--primary);
+  font-size: 0.875rem;
+  text-decoration: none;
+  margin-top: 0.5rem;
+}
+
+.github-link:hover {
+  text-decoration: underline;
+}
+
+/* Minutes */
+.minutes-section {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid var(--gray-200);
+}
+
+.minutes-content {
+  color: var(--gray-700);
+}
+
+.minutes-content h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.minutes-content ul, .minutes-content ol {
+  margin-left: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+/* Motion detail page */
+.motion-detail header {
+  margin-bottom: 2rem;
+}
+
+.motion-detail h1 {
+  font-size: 1.75rem;
+  margin: 0.5rem 0;
+}
+
+.motion-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid var(--gray-200);
+  margin-bottom: 1.5rem;
+}
+
+.meta-item label {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--gray-500);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+
+.meta-item span, .meta-item a {
+  font-weight: 500;
+  color: var(--gray-900);
+}
+
+.motion-body {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid var(--gray-200);
+  margin-bottom: 1.5rem;
+}
+
+.vote-detail {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid var(--gray-200);
+  margin-bottom: 1.5rem;
+}
+
+.vote-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.vote-column ul {
+  list-style: none;
+}
+
+.vote-column li {
+  padding: 0.25rem 0;
+}
+
+.vote-yes h3 { color: var(--success); }
+.vote-no h3 { color: var(--danger); }
+.vote-abstain h3 { color: var(--gray-500); }
+
+/* Committee page */
+.committee-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.member-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.25rem;
+  border: 1px solid var(--gray-200);
+}
+
+.member-card h3 {
+  font-size: 1.125rem;
+  margin-bottom: 0.25rem;
+}
+
+.member-card .role {
+  color: var(--primary);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.member-card .institution {
+  color: var(--gray-500);
+  font-size: 0.875rem;
+}
+
+/* Meeting list */
+.meeting-list {
+  list-style: none;
+}
+
+.meeting-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.meeting-list li:last-child {
+  border-bottom: none;
+}
+
+.meeting-list a {
+  color: var(--gray-900);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.meeting-list a:hover {
+  color: var(--primary);
+}
+
+.meeting-list .date {
+  color: var(--gray-500);
+  font-size: 0.875rem;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 2rem;
+  color: var(--gray-500);
+  font-size: 0.875rem;
+}
+
+footer a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .nav-links {
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .attendance-grid,
+  .vote-grid {
+    grid-template-columns: 1fr;
+  }
+}

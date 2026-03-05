@@ -1,0 +1,22 @@
+# CLIF Motion Registry
+# All motions are tracked here with their full history
+
+motions: []
+# Example motion format:
+# - id: "2026-001"
+#   title: "Add therapy_details table to CLIF 3.0"
+#   type: "new_table"
+#   proposed_by: "Will Parker"
+#   seconded_by: "Nick Ingraham"
+#   proposed_date: "2026-03-06"
+#   status: "passed"  # proposed, seconded, discussion, voting, passed, failed, tabled
+#   meeting: "2026-03-06"
+#   description: |
+#     Add a new therapy_details table to capture detailed therapy information
+#     including timing, dosing, and response data.
+#   votes:
+#     yes: ["Will Parker", "Nick Ingraham", "Catherine Gao", "Kaveri Chhikara", "Pat Lyons"]
+#     no: []
+#     abstain: ["Chad Hochberg"]
+#   outcome: "passed"
+#   github_issue: "https://github.com/Common-Longitudinal-ICU-data-Format/CLIF/issues/XX"

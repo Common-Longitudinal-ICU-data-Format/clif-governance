@@ -1,0 +1,80 @@
+---
+layout: default
+---
+
+<article class="motion-detail">
+  <header>
+    <span class="motion-id">#{{ page.id }}</span>
+    <h1>{{ page.title }}</h1>
+    <span class="motion-status status-{{ page.status }}">{{ page.status | capitalize }}</span>
+  </header>
+
+  <div class="motion-meta-grid">
+    <div class="meta-item">
+      <label>Type</label>
+      <span>{{ page.type | replace: "_", " " | capitalize }}</span>
+    </div>
+    <div class="meta-item">
+      <label>Proposed By</label>
+      <span>{{ page.proposed_by }}</span>
+    </div>
+    <div class="meta-item">
+      <label>Seconded By</label>
+      <span>{{ page.seconded_by | default: "Awaiting second" }}</span>
+    </div>
+    <div class="meta-item">
+      <label>Date Proposed</label>
+      <span>{{ page.proposed_date }}</span>
+    </div>
+    <div class="meta-item">
+      <label>Meeting</label>
+      <a href="{{ '/meetings/' | append: page.meeting | relative_url }}">{{ page.meeting }}</a>
+    </div>
+  </div>
+
+  <section class="motion-body">
+    <h2>Description</h2>
+    {{ content }}
+  </section>
+
+  {% if page.votes %}
+  <section class="vote-detail">
+    <h2>Vote Record</h2>
+    <div class="vote-grid">
+      <div class="vote-column vote-yes">
+        <h3>👍 Yes ({{ page.votes.yes | size }})</h3>
+        <ul>
+          {% for voter in page.votes.yes %}
+          <li>{{ voter }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="vote-column vote-no">
+        <h3>👎 No ({{ page.votes.no | size }})</h3>
+        <ul>
+          {% for voter in page.votes.no %}
+          <li>{{ voter }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="vote-column vote-abstain">
+        <h3>➖ Abstain ({{ page.votes.abstain | size }})</h3>
+        <ul>
+          {% for voter in page.votes.abstain %}
+          <li>{{ voter }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+  {% if page.github_issue %}
+  <section class="github-section">
+    <h2>GitHub Integration</h2>
+    <a href="{{ page.github_issue }}" class="github-link" target="_blank">
+      📋 View GitHub Issue →
+    </a>
+  </section>
+  {% endif %}
+</article>

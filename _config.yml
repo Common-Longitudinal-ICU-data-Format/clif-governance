@@ -1,0 +1,38 @@
+title: CLIF Governance
+description: Parliamentary tracker for the CLIF Consortium Steering Committee
+baseurl: "/clif-governance"
+url: "https://common-longitudinal-icu-data-format.github.io"
+
+# Build settings
+markdown: kramdown
+theme: null
+plugins:
+  - jekyll-seo-tag
+
+# Collections
+collections:
+  meetings:
+    output: true
+    permalink: /meetings/:name/
+  motions:
+    output: true
+    permalink: /motions/:name/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "meetings"
+    values:
+      layout: "meeting"
+  - scope:
+      path: ""
+      type: "motions"
+    values:
+      layout: "motion"
+
+# Exclude from build
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock

@@ -1,0 +1,83 @@
+name: Create GitHub Issue for Passed Motion
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '_data/motions.yml'
+      - '_meetings/*.md'
+
+jobs:
+  check-motions:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      
+      - name: Check for newly passed motions
+        id: check
+        run: |
+          # Compare motions.yml between current and previous commit
+          git diff HEAD~1 HEAD -- _data/motions.yml > diff.txt
+          
+          # Look for status changes to "passed"
+          if grep -q '+.*status:.*passed' diff.txt; then
+            echo "new_passed=true" >> $GITHUB_OUTPUT
+          else
+            echo "new_passed=false" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Parse passed motions and create issues
+        if: steps.check.outputs.new_passed == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const yaml = require('js-yaml');
+            
+            // Read motions file
+            const motions = yaml.load(fs.readFileSync('_data/motions.yml', 'utf8'));
+            
+            // Find motions marked as passed that don't have github_issue set
+            for (const motion of motions.motions || []) {
+              if (motion.status === 'passed' && !motion.github_issue) {
+                // Determine target repo based on motion type
+                let targetRepo = 'CLIF';
+                if (motion.type === 'mcide_update') {
+                  targetRepo = 'CLIF';  // mCIDE lives in main repo
+                }
+                
+                // Create issue
+                const issue = await github.rest.issues.create({
+                  owner: 'Common-Longitudinal-ICU-data-Format',
+                  repo: targetRepo,
+                  title: `[Motion ${motion.id}] ${motion.title}`,
+                  body: `## Motion Passed by Steering Committee
+                  
+**Motion ID:** ${motion.id}
+**Type:** ${motion.type}
+**Proposed by:** ${motion.proposed_by}
+**Seconded by:** ${motion.seconded_by || 'N/A'}
+**Date:** ${motion.proposed_date}
+**Meeting:** ${motion.meeting}
+
+## Description
+
+${motion.description || 'No description provided.'}
+
+## Vote Results
+
+- ✅ Yes: ${(motion.votes?.yes || []).length}
+- ❌ No: ${(motion.votes?.no || []).length}
+- ➖ Abstain: ${(motion.votes?.abstain || []).length}
+
+---
+*This issue was automatically created by the CLIF Governance tracker.*
+*[View motion details](https://common-longitudinal-icu-data-format.github.io/clif-governance/motions/)*`,
+                  labels: ['governance', motion.type.replace('_', '-')]
+                });
+                
+                console.log(`Created issue #${issue.data.number} for motion ${motion.id}`);
+              }
+            }
